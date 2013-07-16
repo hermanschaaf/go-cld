@@ -1,0 +1,14 @@
+PROJECT = liblangdet.a
+OBJECTS = lang.o
+CPPFLAGS = -std=c++0x -fpic -Wall -Wextra -pedantic -Wno-unused-but-set-parameter -I. -I /usr/local/include/cld -L /usr/local/lib/cld -l cld -Os
+
+all: $(PROJECT)
+
+clean:
+	rm -f *.o *.a
+
+.cpp.o:
+	gcc -lstdc++ -c $(CPPFLAGS) $<
+
+$(PROJECT): $(OBJECTS)
+	ar rc $(PROJECT) $(OBJECTS)
